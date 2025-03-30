@@ -1,7 +1,7 @@
 package com.ibrohimapk3.shoppinglist.domain
 
-class AddShopUseCase {
-    fun addShopList(item : ShopItem){
-
+class AddShopUseCase(private val shopListRepository: ShopListRepository) {
+    fun addShopList(item: ShopItem) {
+        shopListRepository.addShopList(item)
     }
 }

@@ -1,7 +1,9 @@
 package com.ibrohimapk3.shoppinglist.domain
 
-class GetShopUseCase {
-    fun getShopList(): List<ShopItem>{
-        TODO()
+import androidx.lifecycle.LiveData
+
+class GetShopUseCase(private val shopListRepository: ShopListRepository) {
+    fun getShopList(): LiveData<List<ShopItem>> {
+        return shopListRepository.getShopList()
     }
 }

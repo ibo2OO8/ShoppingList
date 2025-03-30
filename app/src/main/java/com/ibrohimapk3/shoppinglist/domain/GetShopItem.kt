@@ -1,7 +1,7 @@
 package com.ibrohimapk3.shoppinglist.domain
 
-class GetShopItem {
-    fun getShopItem(shopItemId : Int): ShopItem {
-        TODO()
+class GetShopItem (private val shopListRepository: ShopListRepository){
+    fun getShopItem(shopItemId : Int): ShopItem? {
+        return shopListRepository.getShopItem(shopItemId)
     }
 }
