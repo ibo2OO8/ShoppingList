@@ -16,7 +16,10 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
         }
     var onShopItemLongClick : CallBackListener? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopItemViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ShopItemViewHolder {
         var layout = when (viewType) {
             VIEW_TYPE_ENABLED -> R.layout.item_shop
             VIEW_TYPE_DISABLED -> R.layout.item_shop_disabled
