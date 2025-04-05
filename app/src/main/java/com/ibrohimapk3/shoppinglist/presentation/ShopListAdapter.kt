@@ -8,19 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ibrohimapk3.shoppinglist.R
 import com.ibrohimapk3.shoppinglist.domain.ShopItem
 
-class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>() {
+class ShopListAdapter(var onShopItemLongClick: CallBackListener? = null) : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>() {
     var shopList = listOf<ShopItem>()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
-    var onShopItemLongClick : CallBackListener? = null
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-
-        viewType: Int
-    ): ShopItemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopItemViewHolder {
         var layout = when (viewType) {
             VIEW_TYPE_ENABLED -> R.layout.item_shop
             VIEW_TYPE_DISABLED -> R.layout.item_shop_disabled
@@ -35,7 +30,6 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
         holder.itemView.setOnLongClickListener {
             onShopItemLongClick?.onShopItemLongClick(shopItem)
             true
-
         }
         holder.tvName.text = shopItem.name
         holder.tvCount.text = shopItem.count.toString()
@@ -62,7 +56,4 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
         var RV_POOL = 20
     }
 
-    interface CallBackListener {
-        fun onShopItemLongClick(item: ShopItem)
-    }
 }
