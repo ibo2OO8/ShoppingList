@@ -18,6 +18,7 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
+
         viewType: Int
     ): ShopItemViewHolder {
         var layout = when (viewType) {
