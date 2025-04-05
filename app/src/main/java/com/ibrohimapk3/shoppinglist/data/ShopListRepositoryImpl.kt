@@ -1,9 +1,9 @@
 package com.ibrohimapk3.shoppinglist.data
-
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ibrohimapk3.shoppinglist.domain.ShopItem
 import com.ibrohimapk3.shoppinglist.domain.ShopListRepository
+import kotlin.random.Random
 
 object ShopListRepositoryImpl : ShopListRepository {
 
@@ -12,10 +12,9 @@ object ShopListRepositoryImpl : ShopListRepository {
     private var shopLD = MutableLiveData<List<ShopItem>>()
 
     init {
-        addShopList(ShopItem("ads", 1, false))
-        addShopList(ShopItem("adsr", 2, false))
-        addShopList(ShopItem("adsd", 23, false))
-        addShopList(ShopItem("ads", 3, false))
+       for (i in 0..20){
+           addShopList(ShopItem("name $i" , i , Random.nextBoolean()))
+       }
     }
 
     private var autoIncrementId = 0
@@ -31,9 +30,11 @@ object ShopListRepositoryImpl : ShopListRepository {
     }
 
     override fun editShopList(shopItem: ShopItem) {
-        var oldEl = getShopItem(shopItem.id)
-        shopList.remove(oldEl)
-        addShopList(shopItem)
+        val index = shopList.indexOfFirst { it.id == shopItem.id }
+        if (index != -1) {
+            shopList[index] = shopItem
+            updateList()
+        }
     }
 
     override fun addShopList(item: ShopItem) {
@@ -52,4 +53,5 @@ object ShopListRepositoryImpl : ShopListRepository {
     private fun updateList() {
         shopLD.value = shopList.toList()
     }
+
 }

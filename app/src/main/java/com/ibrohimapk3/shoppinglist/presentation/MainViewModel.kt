@@ -16,8 +16,7 @@ class MainViewModel : ViewModel() {
     private var editShopItemUseCase = EditShopUseCase(shopListRepositoryImpl)
 
     var shopList = getShopListUseCase.getShopList()
-
-
+    
     fun deleteShopList(shopItem: ShopItem) {
         deleteShopItemUseCase.deleteItem(shopItem)
     }
